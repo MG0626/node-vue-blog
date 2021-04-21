@@ -15,9 +15,12 @@ import axios from 'axios';
 // }
 
 const http = axios.create({
-  baseURL: 'http://localhost:3000/admin',
+  baseURL: process.env.VUE_APP_API_URL || '/admin',
+  // baseURL: 'http://localhost:3000/admin',
   timeout: 5000
 });
+
+console.log(process.env);
 
 http.interceptors.request.use(config => {
   config.headers.Authorization = "Bearer " + window.localStorage.getItem('token');
